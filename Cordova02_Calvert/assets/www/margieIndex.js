@@ -5,12 +5,12 @@
 var Clicker = (function() {
 
 	function Clicker() {
-		$("#button01").click(tempConvert);
-		$("#button02").click(milesConvert);
-		$("#button03").click(sqrConvert);
+		$("#button01").click(this.tempConvert);
+		$("#button02").click(this.milesConvert);
+		$("#button03").click(this.sqrConvert);
 	};
 
-	var tempConvert = function() {
+	 Clicker.prototype.tempConvert = function() {
 
 		var inputData = $('#tempInputData').val();
 		var outputData1 = (inputData - 32);
@@ -22,7 +22,7 @@ var Clicker = (function() {
 		$('#tempInputData').val(inputStringToShowUser);
 	};
 
-	var milesConvert = function() {
+	Clicker.prototype.milesConvert = function() {
 
 		var inputData = $('#milesInputData').val();
 		var outputData = (1.60934 * inputData);
@@ -32,7 +32,7 @@ var Clicker = (function() {
 		$('#milesInputData').val(inputStringToShowUser);
 	};
 
-	var sqrConvert = function() {
+	Clicker.prototype.sqrConvert = function() {
 
 		var inputData = $('#sqrInputData').val();
 		var outputData = (Math.sqrt(inputData));
