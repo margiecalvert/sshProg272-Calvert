@@ -1,7 +1,8 @@
 describe("Converter", function() {
   it("Confirm that tempConverter works", function() {
-  	var inputData = 15;
-    expect(MyConverter().tempConvert().outputData3.toEqual(5));
+  	var clicker = new Clicker();
+  	var actual = clicker.tempConvert(59);
+    expect(actual).toBe(15);
   });
   
   it("One plus one equals two", function() {

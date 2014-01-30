@@ -4,15 +4,21 @@
 
 var Clicker = (function() {
 
+	var that = null;
+	
 	function Clicker() {
-		$("#button01").click(this.tempConvert);
+		that = this;
+		$("#button01").click(tempConvertPrivate);
 		$("#button02").click(this.milesConvert);
 		$("#button03").click(this.sqrConvert);
 	};
-
-	 Clicker.prototype.tempConvert = function() {
-
+	
+	var tempConvertPrivate = function(){
 		var inputData = $('#tempInputData').val();
+		that.tempConvert(inputData);
+	};
+
+	 Clicker.prototype.tempConvert = function(inputData) {
 		var outputData1 = (inputData - 32);
 		var outputData2 = outputData1 * 5;
 		var outputData3 = outputData2 / 9;
@@ -20,6 +26,8 @@ var Clicker = (function() {
 		var inputStringToShowUser = 'Fahrenheit: ' + inputData;
 		$('#tempOutputData').val(stringToShowUser);
 		$('#tempInputData').val(inputStringToShowUser);
+		outputData4 = parseInt(outputData3);
+		return outputData4;
 	};
 
 	Clicker.prototype.milesConvert = function() {
