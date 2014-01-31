@@ -17,4 +17,4 @@ describe("Converter", function() {
 		expect(actual).toBe(4);
 	});
 
-}); 
+});
