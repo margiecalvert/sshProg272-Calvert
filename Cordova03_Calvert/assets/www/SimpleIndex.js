@@ -4,6 +4,8 @@
 
 function myHtmlObject() {'use strict';
 
+     
+
      function setParagraph1() {
         $('#div01').load("Sources.html #paragraph01", function () {
             console.log("Load was performed.");
@@ -21,10 +23,12 @@ function myHtmlObject() {'use strict';
         });
     }
 
-    $('#button01').click(setParagraph1);
-    $('#button02').click(setParagraph2);
-    $('#button03').click(setParagraph3);
-
+   
+    
+    $('#buttonhtml01').click(setParagraph1);
+    $('#buttonhtml02').click(setParagraph2);
+    $('#buttonhtml03').click(setParagraph3);
+	
     }
 
 

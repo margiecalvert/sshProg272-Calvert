@@ -23,6 +23,9 @@ function setParagraph3() {
 	});
 };
 
+
+
+
 /*function setParagraph(num) {
 	paragraphNum = ("#paragraph0" + num);
 	stringToLoad = "Sources.html" + paragraphNum;
