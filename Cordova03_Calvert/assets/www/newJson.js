@@ -1,9 +1,12 @@
-function MyObject() {
-	this.GetData1 = function(data) {
-		$.getJSON('index.json', function(data) {
-			var result = "<p>First Name: " + data[0].firstName + "</p>";
-			var value = "<p>Last Name: " + data[0].lastName + "</p>";
-			$("#div01json").html(result + value);
+function MyJSONObject() {
+    this.GetData = function (event) {"use strict";
+        var index = event.data.index;
+        $.getJSON('index.json', function(data) {
+			var result = "<p>First Name: " + data[index].firstName + "</p>";
+			var value = "<p>Last Name: " + data[index].lastName + "</p>";
+			var name = "#json";
+			var divname = name.concat(index);
+			$(divname).html(result + value);
 		}).success(function() {
 			console.log("csc: success. Loaded index.json");
 		}).error(function(jqXHR, textStatus, errorThrown) {
@@ -13,39 +16,18 @@ function MyObject() {
 		});
 	};
 
-	this.GetData2 = function(data) {
-		$.getJSON('index.json', function(data) {
-			var result = "<p>First Name: " + data[1].firstName + "</p>";
-			var value = "<p>Last Name: " + data[1].lastName + "</p>";
-			$("#div02json").html(result + value);
-		}).success(function() {
-			console.log("csc: success. Loaded index.json");
-		}).error(function(jqXHR, textStatus, errorThrown) {
-			showError(jqXHR, textStatus, errorThrown);
-		}).complete(function() {
-			console.log("csc: completed call to get index.json");
-		});
-	};
-
-	this.GetData3 = function(data) {
-		$.getJSON('index.json', function(data) {
-			var result = "<p>First Name: " + data[2].firstName + "</p>";
-			var value = "<p>Last Name: " + data[2].lastName + "</p>";
-			$("#div03json").html(result + value);
-		}).success(function() {
-			console.log("csc: success. Loaded index.json");
-		}).error(function(jqXHR, textStatus, errorThrown) {
-			showError(jqXHR, textStatus, errorThrown);
-		}).complete(function() {
-			console.log("csc: completed call to get index.json");
-		});
-	};
-	$('#buttonjson01').click(GetData1);
-	$('#buttonjson02').click(GetData2);
-	$('#buttonjson03').click(GetData3);
+	$('#buttonjson01').click({
+		index : 0
+	}, GetData);
+	$('#buttonjson02').click({
+		index : 1
+	}, GetData);
+	$('#buttonjson03').click({
+		index : 2
+	}, GetData);
 };
 
 $(document).ready(function() {
-	MyObject();
+	MyJSONObject();
 
 });
