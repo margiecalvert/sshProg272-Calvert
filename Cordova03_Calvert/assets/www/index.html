@@ -1,45 +1,73 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      
-        <link rel="stylesheet" type="text/css" href="master.css" />
-        <script src = "http://code.jquery.com/jquery-1.11.0.js"> </script>
-        <script src = "SimpleIndex.js"> </script>
-        <script src = "newJson.js"> </script>
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-           
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
-        <div class= "buttonDiv"> 
-        <button id= "buttonhtml01" class= "buttonLook" > Button Html 1</button>	
-        <button id= "buttonhtml02" class= "buttonLook" > Button Html 2</button>	
-        <button id= "buttonhtml03" class= "buttonLook"> Button Html 3</button>	
-        <button id= "buttonjson01" class= "buttonLook" > Button Json1</button>	
-        <button id= "buttonjson02" class= "buttonLook" > Button Json2</button>	
-        <button id= "buttonjson03" class= "buttonLook"> Button Json3</button>	
-        		
-        </div>
-        <div id= "div01" class= "myDiv">My Div </div>
-        <div id= "div02" class= "myDiv">My Div </div>
-        <div id= "div03" class= "myDiv">My Div </div>
-        <div id= "json0" class= "myDiv" value = "0">My Div </div>
-        <div id= "json1" class= "myDiv" value = "1">My Div </div>
-        <div id= "json2" class= "myDiv" value = "2">My Div </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" type="text/css" href="master.css" />
+		<script src = "http://code.jquery.com/jquery-1.11.0.js"></script>
+		<script src = "SimpleIndex.js"></script>
+		<script src = "newJson.js"></script>
+		<title>Hello World</title>
+	</head>
+	<body>
+		<div class="app">
+
+			<div id="deviceready" class="blink">
+				<p class="event listening">
+					Connecting to Device
+				</p>
+				<p class="event received">
+					Device is Ready
+				</p>
+			</div>
+		</div>
+		<div class= "buttonDiv">
+			<button id= "buttonhtml01" class= "buttonLook" >
+				Button Html 1
+			</button>
+			<button id= "buttonhtml02" class= "buttonLook" >
+				Button Html 2
+			</button>
+			<button id= "buttonhtml03" class= "buttonLook">
+				Button Html 3
+			</button>
+			<button id= "buttonjson01" class= "buttonLook" >
+				Button Json1
+			</button>
+			<button id= "buttonjson02" class= "buttonLook" >
+				Button Json2
+			</button>
+			<button id= "buttonjson03" class= "buttonLook">
+				Button Json3
+			</button>
+
+		</div>
+		<div id= "div00" class= "myDiv">
+			My Div
+		</div>
+		<div id= "div01" class= "myDiv">
+			My Div
+		</div>
+		<div id= "div02" class= "myDiv">
+			My Div
+		</div>
+		<div id= "json0" class= "myDiv" value = "0">
+			My Div
+		</div>
+		<div id= "json1" class= "myDiv" value = "1">
+			My Div
+		</div>
+		<div id= "json2" class= "myDiv" value = "2">
+			My Div
+		</div>
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+
+		<script type="text/javascript">
+			app.initialize();
+		</script>
+	</body>
 </html>

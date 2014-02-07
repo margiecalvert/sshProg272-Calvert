@@ -4,35 +4,32 @@
 
 function myHtmlObject() {'use strict';
 
-     
+     function setParagraph(event) {
+        var index = event.data.index;
+        var num = index + 1;
+        var name = "#div0";
+        var divName = name.concat(index);
+        
 
-     function setParagraph1() {
-        $('#div01').load("Sources.html #paragraph01", function () {
-            console.log("Load was performed.");
-        });
-    }
-     function setParagraph2() {
-        $('#div02').load("Sources.html #paragraph02", function () {
-            console.log("Load was performed.");
-        });
-    }
-
-     function setParagraph3() {
-        $('#div03').load("Sources.html #paragraph03", function () {
+        $(divName).load("Sources.html #paragraph0" + num, function() {
             console.log("Load was performed.");
         });
     }
 
-   
-    
-    $('#buttonhtml01').click(setParagraph1);
-    $('#buttonhtml02').click(setParagraph2);
-    $('#buttonhtml03').click(setParagraph3);
-	
+
+     $('#buttonhtml01').click({
+        index : 0
+    }, setParagraph);
+     $('#buttonhtml02').click({
+        index : 1
+    }, setParagraph);
+     $('#buttonhtml03').click({
+        index : 2
+    }, setParagraph);
     }
 
 
-$(document).ready(function () {
+$(document).ready(function () {"use strict";
      myHtmlObject();
-});
+    });
 
