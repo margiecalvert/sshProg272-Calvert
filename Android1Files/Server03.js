@@ -30,7 +30,7 @@ var QueryMongo = (function() {
 				throw err;
 			}
 			myInsertLoop(database, 'test_insert', {
-				firstName : "Priscilla"
+				firstName : "Abe"
 			});
 			console.log('IngetDataCallback');
 			getCollection(database, result);
@@ -68,11 +68,9 @@ var QueryMongo = (function() {
 	};
 	
 	var myInsertLoop = function(db, collectionName, objectToInsert){
-		for (i = 1; i < 6; i++){
 		var collection = db.collection(collectionName);
-		var object = objectToInsert;
-		
-			collection.insert(object, function(err, docs) {
+		for (i = 1; i < 6; i++){
+		collection.insert(objectToInsert, function(err, docs) {
 				if (err) {
 					throw err;
 				}
