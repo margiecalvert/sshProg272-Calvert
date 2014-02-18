@@ -67,9 +67,9 @@ var QueryMongo = (function() {
 		});
 	};
 	
-	var myInsertLoop = function(db, collectionName, objectToInsert){
+	function myInsertLoop(db, collectionName, objectToInsert){
 		var collection = db.collection(collectionName);
-		for (i = 1; i < 6; i++){
+		for (var i = 1; i < 6; i++){
 		collection.insert(objectToInsert, function(err, docs) {
 				if (err) {
 					throw err;
