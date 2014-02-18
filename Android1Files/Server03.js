@@ -69,7 +69,12 @@ var QueryMongo = (function() {
 	
 	var bigInsertIntoCollection = function(db, collectionName, objectToInsert) {
         for (var i = 1; i < 5; i++){
-		insertIntoCollection(db, collectionName, objectToInsert);
+		collection.insert(objectToInsert, function(err, docs) {
+			if (err) {
+				throw err;
+			}
+			console.log("insert succeeded");
+		});
 		}	
 	};
 
