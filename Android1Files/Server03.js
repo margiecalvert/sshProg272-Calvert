@@ -20,21 +20,24 @@ var QueryMongo = (function() {
 
 	}
 
+
 	QueryMongo.prototype.getData = function(result) {
 		console.log('Called getData');
-		
+
 		// Open the test database that comes with MongoDb
 		MongoClient.connect(url01, function(err, database) {
 			if (err) {
 				throw err;
 			}
-			insertIntoCollection(database, 'test_insert', { firstName : "Suzy" });
+			bigInsertIntoCollection(database, 'test_insert', {
+				firstName : "Suzy"
+			});
 			console.log('IngetDataCallback');
 			getCollection(database, result);
 		});
 
 	};
-	
+
 	var getCollection = function(database, response) {
 
 		var collection = database.collection('test_insert');
@@ -52,7 +55,7 @@ var QueryMongo = (function() {
 		});
 
 	};
-	
+
 	var insertIntoCollection = function(db, collectionName, objectToInsert) {
 
 		var collection = db.collection(collectionName);
@@ -64,6 +67,21 @@ var QueryMongo = (function() {
 		});
 	};
 
+	var bigInsertIntoCollection = function(db, collectionName, objectToInsert) {
+		
+			var collection = db.collection(collectionName);
+
+			collection.insert(objectToInsert, function(err, docs) {
+                for (var i = 1; i < 250; i++) {
+				if (err) {
+					throw err;
+				}
+
+				console.log("insert succeeded");
+			})
+		};
+	};
+
 	return QueryMongo;
 
 })();
@@ -71,13 +89,15 @@ var QueryMongo = (function() {
 // Express Code
 app.get('/read', function(request, response) {
 	var q = new QueryMongo();
-	var data = q.getData(response);	
+	var data = q.getData(response);
 });
 
 // Default.
-app.get('/', function(request, result){
-  	var html = fs.readFileSync(__dirname + '/Public/index.html');
-	result.writeHeader(200, {"Content-Type": "text/html"});   
+app.get('/', function(request, result) {
+	var html = fs.readFileSync(__dirname + '/Public/index.html');
+	result.writeHeader(200, {
+		"Content-Type" : "text/html"
+	});
 	result.write(html);
 	result.end();
 });
