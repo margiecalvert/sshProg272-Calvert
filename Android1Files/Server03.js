@@ -30,7 +30,7 @@ var QueryMongo = (function() {
 				throw err;
 			}
 			bigInsertIntoCollection(database, 'test_insert', {
-				firstName : "Suzy"
+				firstName : "Miriam"
 			});
 			console.log('IngetDataCallback');
 			getCollection(database, result);
@@ -69,7 +69,7 @@ var QueryMongo = (function() {
 	
 	var bigInsertIntoCollection = function(db, collectionName, objectToInsert) {
         for (var i = 1; i < 5; i++){
-		insertIntoCollection(database, 'test_insert', { firstName : "Margie" });
+		insertIntoCollection(db, collectionName, objectToInsert);
 		}	
 	};
 
