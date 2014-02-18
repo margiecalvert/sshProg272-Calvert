@@ -29,8 +29,8 @@ var QueryMongo = (function() {
 			if (err) {
 				throw err;
 			}
-			bigInsertIntoCollection(database, 'test_insert', {
-				firstName : "Miriam"
+			myInsertLoop(database, 'test_insert', {
+				firstName : "Priscilla"
 			});
 			console.log('IngetDataCallback');
 			getCollection(database, result);
@@ -67,17 +67,20 @@ var QueryMongo = (function() {
 		});
 	};
 	
-	var bigInsertIntoCollection = function(db, collectionName, objectToInsert) {
-        for (var i = 1; i < 5; i++){
-		collection.insert(objectToInsert, function(err, docs) {
-			if (err) {
-				throw err;
-			}
-			console.log("insert succeeded");
-		});
-		}	
-	};
-
+	var myInsertLoop = function(db, collectionName, objectToInsert){
+		for (i = 1; i < 6; i++){
+		var collection = db.collection(collectionName);
+		var object = objectToInsert;
+		
+			collection.insert(object, function(err, docs) {
+				if (err) {
+					throw err;
+				}
+				console.log("margie insert succeeded");
+				
+			});
+			}};
+	
 	
 
 	return QueryMongo;
