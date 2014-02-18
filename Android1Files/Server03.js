@@ -29,12 +29,13 @@ var QueryMongo = (function() {
 			if (err) {
 				throw err;
 			}
-			myInsertLoop(database, 'test_insert', {
+			for(var i = 1; i < 4; i++){
+			insertIntoCollection(database, 'test_insert', {
 				firstName : "Abe"
 			});
 			console.log('IngetDataCallback');
 			getCollection(database, result);
-		});
+		}});
 
 	};
 
@@ -67,17 +68,7 @@ var QueryMongo = (function() {
 		});
 	};
 	
-	function myInsertLoop(db, collectionName, objectToInsert){
-		var collection = db.collection(collectionName);
-		for (var i = 1; i < 6; i++){
-		collection.insert(objectToInsert, function(err, docs) {
-				if (err) {
-					throw err;
-				}
-				console.log("margie insert succeeded");
-				
-			});
-			}};
+	
 	
 	
 
