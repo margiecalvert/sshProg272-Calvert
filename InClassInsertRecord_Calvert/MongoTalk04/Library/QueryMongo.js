@@ -57,21 +57,22 @@ var QueryMongo = (function() {'use strict';
 	};
 	
 	// Will create collection if it does not exist
-	var insertIntoCollection = function(db, collectionName, objectToInsert) {
+	 QueryMongo.prototype.insertIntoCollection = function(database, collectionName, objectToInsert) {
 
-        getDatabase(function getCol(database) {
+       getDatabase(function getCol(database) {
 			var collection = database.collection('test_insert');
 
-		var collection = database.collection(collectionName);
-		collection.insert(objectToInsert, function(err, docs) {
+		  collection.insert(objectToInsert, function(err, docs) {
 			if (err) {
 				throw err;
 			}
 			database.close();
 			console.log("insert succeeded");
-			//close database insert call here
+			
 		});
-	};
+       })};
+	
+	
 	QueryMongo.prototype.getCollectionCount = function(initResponse, count) {
 		console.log("getCollection called");
 		response = initResponse;

@@ -36,7 +36,8 @@ var MongoData = (function() { 'use strict';
 	};
 
     var queryNewRecord = function() {
-		$.getJSON('/readAll', function(data) {
+		$.getJSON('/newRecord', function(data) {
+			alert("queryNewRecord");
 			mongoData = data;
 			console.log(data);
 			displayRecord(0);
