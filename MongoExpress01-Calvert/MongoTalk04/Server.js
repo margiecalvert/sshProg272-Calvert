@@ -17,12 +17,11 @@ app.get('/readAll', function(request, response) {'use strict';
 
 app.get('/readOne', function(request, response) { 'use strict';
 	console.log("readOne called");
-	queryMongo.getCollectionCount(response, 1);
+	queryMongo.getCollectionCount(response, 2);
 });
 
 // Default.
 app.get('/', function(request, result) {'use strict';
-	console.log("default app.get called");
 	var html = fs.readFileSync(__dirname + '/Public/index.html');
 	result.writeHeader(200, { "Content-Type" : "text/html" });
 	result.write(html);

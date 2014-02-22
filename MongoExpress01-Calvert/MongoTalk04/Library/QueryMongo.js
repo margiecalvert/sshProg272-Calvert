@@ -9,13 +9,14 @@ var QueryMongo = (function() {'use strict';
 	var response = null;
 	var database = null;
 	var url = null;
+	var collectionName = 'test_insert';
 	
 	function QueryMongo() {
 		var urls = ['mongodb://127.0.0.1:27017/test',
 			'mongodb://192.168.2.19:27017/test',
 			'mongodb://192.168.2.34:27017/test',
 			'mongodb://192.168.56.101:27017/test'];
-
+		
 		url = urls[0];
 	}
 
@@ -28,7 +29,10 @@ var QueryMongo = (function() {'use strict';
 				if (err) {
 					throw err;
 				}
-				func(database);
+			
+			createCollection(database);
+			console.log('IngetDataCallback');
+			getCollection(database, response);
 			});
 		} else {
 			console.log('Querying for database');
@@ -40,6 +44,7 @@ var QueryMongo = (function() {'use strict';
 				func(database);
 			});
 		}
+		
 	};
 	
 	var insertData = function(newRecord) {
@@ -52,28 +57,45 @@ var QueryMongo = (function() {'use strict';
 		});
 	};
 
-	QueryMongo.prototype.insertCollection = function(database) {
+	var clearCollection = function(db, collectionName) {
+		console.log('clearcollection called');
+        var collection = db.collection(collectionName);
+        collection.remove(function(err) {
+			if (err) {
+				throw err;
+			}
+		});
+    };
+	
+	var createCollection = function(database) {
+		console.log('createCollection called');
 		var collection = database.collection('test_insert');
-		for (var count = 10000; count < 10005; count++) {
-			var newRecord = {
-				firstName : "Abe" + count,
-				"lastName" : "Lincoln" + count,
-				"address" : count + " Green Street",
-				"city" : "Bellevue",
-				"state" : "WA",
-				"zip" : 98002
-			};
-			insertData(newRecord);
-		}
-		getCollection(database);
-	};
+		 
+		 for (var count = 1000; count <1002; count++){ 
+            insertIntoCollection(database, 'test_insert', { firstName : "Bill" + count,
+				"lastName" : "Robinson" + count,
+				"address" : count + " Indigo Street",
+				"city" : "Washington",
+				"state" : "DC",
+				"zip" : 98002});
+
+        }};	
+        
+        // Will create collection if it does not exist
+    var insertIntoCollection = function(db, collectionName, objectToInsert) {
+		console.log('insertIntoCollection called');
+        var collection = db.collection(collectionName);
+        collection.insert(objectToInsert, function(err, docs) {
+            // getCollection(db);
+        });
+    };
 
 	QueryMongo.prototype.getCollection = function(initResponse) {
 		console.log("getCollection called");
 		response = initResponse;
 		getDatabase(function getCol(database) {
 			var collection = database.collection('test_insert');
-
+              
 			// Send the collection to the client.
 			collection.find().toArray(function(err, theArray) {
 				console.dir(theArray);
@@ -88,7 +110,7 @@ var QueryMongo = (function() {'use strict';
 		response = initResponse;
 		getDatabase(function getCol(database) {
 			var collection = database.collection('test_insert');
-
+       
 			// Send the collection to the client.
 			collection.find().limit(count).toArray(function(err, theArray) {
 				console.dir(theArray);
