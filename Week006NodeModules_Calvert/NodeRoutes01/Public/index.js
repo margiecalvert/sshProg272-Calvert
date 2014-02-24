@@ -4,11 +4,10 @@ var RouteMaster = ( function() {
 		function RouteMaster() {
 			$("#getNine").click(getNine);
 			$("#getNineParse").click(getNineParse);
-			$("#add").click(add);
 			$("#addPost").click(addPost);
 			$("#subtract").click(subtract);
 			$("#multiply").click(multiply);
-			$("#square").click(square);
+			
 		}
 
 		var getNine = function() {
@@ -26,6 +25,29 @@ var RouteMaster = ( function() {
 				nineResult.html("The value sent from the server is: <strong>" + data.result + "</strong>");
 			});
 		};
+		
+		/*var feetMiles = function() {
+			var operandA = $("#operandA").val();
+			var operandB = $("#operandB").val();
+
+			$.ajax({
+				url : "/feetMiles",
+				type : "GET",
+				data : {
+					"operandA" : operandA,
+					"operandB" : operandB
+				},
+				dataType : "json",
+				success : function(data) {					
+					$("#feetMilesResult").html(operandA + " * " + operandB + " = " + data.result);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR.responseText);
+					console.log(textStatus);
+					console.log(errorThrown);
+				}
+			});
+		};*/
 
 		var add = function() {
 			var operandA = $("#operandA").val();
@@ -97,7 +119,7 @@ var RouteMaster = ( function() {
 			});
 		};
 		
-		var square = function() {
+	/*	var square = function() {
 			var operandA = $("#operandA").val();
 			var operandB = $("#operandA").val();
 
@@ -118,7 +140,7 @@ var RouteMaster = ( function() {
 					console.log(errorThrown);
 				}
 			});
-		};
+		};*/
 
 		var addPost = function() {
 			var operandA = $("#operandAPost").val();
