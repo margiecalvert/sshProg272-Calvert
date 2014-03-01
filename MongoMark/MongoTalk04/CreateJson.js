@@ -61,9 +61,16 @@ var QueryMongo = (function() {
 				"title": theArray[0].title,
 				"text": theArray[0].text,
 		};
-		console.log("Json readout created " + myJson.title);
+		console.log("Json readout created " + myJson.text);
 		var JsonString =  JSON.stringify(myJson);
 		console.log("Json to string " + JsonString);
+		fs.writeFile("test.md", JsonString, function(err) {
+			if(err) {
+				console.log(err);
+			} else {
+			console.log("The file was saved!");
+		}
+		}); 
 		
 	})};	
 
