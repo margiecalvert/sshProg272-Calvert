@@ -1,4 +1,36 @@
-var MongoData = (function() { 'use strict';
+var Run = (function() {
+
+    // Constructor for module pattern
+    function Run() {
+		
+
+        // Call the server's app.get('/read', function() {}); function
+        $.get('/read', function(data) {
+            // do something with HTML sent from the server
+        }).error(function(err) {
+            console.log(err.responseText);
+        });
+    }
+    
+    function init() {		
+		$("#readIn").click(readIn);
+		$("#convert").click(convert);
+		$("#display").click(display);
+		/*$("#showData").click(showData);
+		$("#readRecords").click(readDocuments);*/
+	}
+
+    // return the constructor.
+    return Run;
+})();
+
+$(document).ready(function() {
+    new Run();  
+});
+
+
+
+/*var MongoData = (function() { 'use strict';
 
 	var mongoData = null;
 
@@ -86,4 +118,4 @@ var MongoData = (function() { 'use strict';
 $(document).ready(function() { 'use strict';
 	var o = new MongoData();
 
-});
+});*/
