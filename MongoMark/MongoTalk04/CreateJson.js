@@ -16,83 +16,106 @@ var QueryMongo = (function() {
 	var url02 = 'mongodb://192.168.2.19:27017/test';
 	var url03 = 'mongodb://192.168.2.34:27017/test';
 	var url04 = 'mongodb://192.168.56.101:27017/test';
+	var collectionName = "mongo_mark";
+	var database = null;
 
 	function QueryMongo() {
 		
 	}
 
+	var getDatabase = function(callback) {
+		console.log('Called QueryMongo.getDatabase');
+		if (database !== null) {
+			console.log('database exists');
+			database.open(function(err, database) {
+				if (err) {
+					throw err;
+				}
+				callback(database);
+			});
+		} else {
+			console.log('Querying for database');
+			MongoClient.connect(url01, function(err, databaseResult) {
+				if (err) {
+					throw err;
+				}
+				database = databaseResult;
+				callback(database);
+			});
+		}
+	};
+	
 	QueryMongo.prototype.getData = function(result, fileContent) {
 		console.log('Called getData');
 		// Open the test database that comes with MongoDb
-		MongoClient.connect(url01, function(err, database) {
+		getDatabase(function(err, database) {
 			if (err) {
 				throw err;
 			}
 			console.log('IngetDataCallback');
-			readFileIn(database, 'mongo_mark', fileContent);
-			readFileOut(database, 'mongo_mark');
+			readFileIn(database, collectionName, fileContent);
+			readFileOut(database, collectionName);
 			//convertToHtml;
-			//insertIntoCollection(database, 'mongo_mark', fileContent);
+			//insertIntoCollection(database, collectionName, fileContent);
 			getCollection(database, result);
 		});
 	};
-	
-	var readFileIn = function(database, collection, fileContent)
-	{
+
+	QueryMongo.prototype.readMarkDown = function(title, fileName) {
 		var myJson = {
-		"title": null,
-		"text": null
+			"title": null,
+			"text": null
 		};
 
-		myJson.title = "margie";
+		myJson.title = title;		
+		var fileContent = fs.readFileSync("PresidentsIn.md", 'utf8');
 		myJson.text = fileContent;
-		insertIntoCollection(database, collection, myJson);
+		
+		return myJson;
+	};
+		
+	
+	QueryMongo.prototype.readFileOut = function(response) {
+		console.log("readFileOut called");
+		getDatabase(function(database) {			
+			var collection = database.collection(collectionName);
+			collection.find().toArray(function(err, theArray) {
+				if (err) {
+					throw err;
+				}
+				database.close();
+				console.log(typeof theArray[theArray.length-1].text);
+				var output = theArray[theArray.length-1].text;
+				writeFile(response, output);
+				// response.send(theArray[0]);				
+			});
+		}); 		
 	};	
-		
-		
 
-	var readFileOut = function(database, collection)
-	{
-		var collection = database.collection('mongo_mark');
-		collection.find().toArray(function(err, theArray){
-			if (err) {
-				throw err;
-			}
-			 
-		 var myJson = {
-				"title": theArray[0].title,
-				"text": theArray[0].text,
-		};
-		console.log("Json readout created " + myJson.text);
-		var JsonString =  JSON.stringify(myJson.text);
-		console.log("Json to string " + JsonString);
-		fs.writeFile("test.md", JsonString, function(err) {
+	var writeFile = function(response, jsonString) {
+		fs.writeFile("test.md", jsonString, function(err) {
 			if(err) {
 				console.log(err);
 			} else {
-			console.log("The file was saved!");
-		convertToHtml();	
-		}
-		}); 
-		
-	})};	
+				console.log("The file was saved!");
+				convertToHtml(response);
+			}			
+		});
+	};
 
-	var convertToHtml = function()
-	{
-		
-		exec('pandoc -t html5 -o test3.html test.md', function callback(error, stdout, stderr) { 
-			// Read in the HTML send the HTML to the client
+	var convertToHtml = function(response)	{		
+		exec('pandoc -t html5 test.md', function callback(error, stdout, stderr) { 
+			// Read in the HTML send the HTML to the client			
 			console.log("convertToHtml was called");
-			 });
-	};	  
-		
-
-		
+			response.send(stdout);
+		});
+	};	
+			
 		
 		
 	var getCollection = function(database, response) {
 
-		var collection = database.collection('mongo_mark');
+		var collection = database.collection(collectionName);
 
 		// View the collection
 		collection.find().toArray(function(err, theArray) {
@@ -108,14 +131,19 @@ var QueryMongo = (function() {
 	};
 
 	// Will create collection if it does not exist
-	var insertIntoCollection = function(db, collectionName, objectToInsert) {
+	QueryMongo.prototype.insertIntoCollection = function(response, objectToInsert) {
 
-		var collection = db.collection(collectionName);
-		collection.insert(objectToInsert, function(err, docs) {
-			if (err) {
-				throw err;
-			}
-			console.log("insert succeeded");
+		getDatabase(function(database) {
+			var collection = database.collection(collectionName);
+			collection.insert(objectToInsert, function(err, docs) {
+				if (err) {
+					console.log('Error occurred');
+					throw err;
+				}
+				console.log("insert succeeded: " + JSON.stringify(docs));
+				database.close();
+				response.send({ result: "Success", document: docs });
+			});
 		});
 	};
 
@@ -123,10 +151,37 @@ var QueryMongo = (function() {
 
 })();
 
+var queryMongo = new QueryMongo;
+var markDownName = 'PresidentsIn.md';
+
+app.get('/getData', function() {
+	var data =  q.getData(response, fileContent);
+});
+
+app.get('/hello', function(request, response) {
+	console.log("hello is called");
+	response.send("Hello");
+});
+
+app.get('/readMarkdown', function(request, response) {
+	console.log("readMarkdown called");
+	var jsonObject = queryMongo.readMarkDown('Presidents', markDownName);
+	response.send(jsonObject);
+});
+
+app.get('/insertMarkdown', function(request, response) {
+	console.log('insertMarkdown');
+	var jsonObject = queryMongo.readMarkDown(markDownName);
+	queryMongo.insertIntoCollection(response, jsonObject);
+});
+
+app.get('/readFileOut', function(request, response) {
+	console.log('readFileOut called');
+	queryMongo.readFileOut(response);
+});
+
 app.get('/', function(request, response) {
-  var q = new QueryMongo();
-  var fileContent = fs.readFileSync("margie.md", 'utf8');
-  var data =  q.getData(response, fileContent);
+	queryMongo.readFileOut(response);  
 });
 
 app.listen(30025);
