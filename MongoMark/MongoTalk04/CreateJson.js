@@ -31,7 +31,7 @@ var QueryMongo = (function() {
 			console.log('IngetDataCallback');
 			readFileIn(database, 'mongo_mark', fileContent);
 			readFileOut(database, 'mongo_mark');
-			convertToHtml;
+			//convertToHtml;
 			//insertIntoCollection(database, 'mongo_mark', fileContent);
 			getCollection(database, result);
 		});
