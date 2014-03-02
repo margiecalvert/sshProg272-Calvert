@@ -8,6 +8,7 @@ var app = express();
 var MongoClient = require('mongodb').MongoClient;
 var format = require('util').format;
 var fs = require('fs');
+var exec = require('child_process').exec;
 
 var QueryMongo = (function() {
 
@@ -30,6 +31,7 @@ var QueryMongo = (function() {
 			console.log('IngetDataCallback');
 			readFileIn(database, 'mongo_mark', fileContent);
 			readFileOut(database, 'mongo_mark');
+			convertToHtml;
 			//insertIntoCollection(database, 'mongo_mark', fileContent);
 			getCollection(database, result);
 		});
@@ -62,19 +64,27 @@ var QueryMongo = (function() {
 				"text": theArray[0].text,
 		};
 		console.log("Json readout created " + myJson.text);
-		var JsonString =  JSON.stringify(myJson);
+		var JsonString =  JSON.stringify(myJson.text);
 		console.log("Json to string " + JsonString);
 		fs.writeFile("test.md", JsonString, function(err) {
 			if(err) {
 				console.log(err);
 			} else {
 			console.log("The file was saved!");
+		convertToHtml();	
 		}
 		}); 
 		
 	})};	
 
-		  
+	var convertToHtml = function()
+	{
+		
+		exec('pandoc -t html5 -o test3.html test.md', function callback(error, stdout, stderr) { 
+			// Read in the HTML send the HTML to the client
+			console.log("convertToHtml was called");
+			 });
+	};	  
 		
 
 		
