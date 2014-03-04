@@ -2,14 +2,7 @@ var Run = (function() {
 
     // Constructor for module pattern
     function Run() {
-		
-
-        // Call the server's app.get('/read', function() {}); function
-        $.get('/read', function(data) {
-            // do something with HTML sent from the server
-        }).error(function(err) {
-            console.log(err.responseText);
-        });
+		init();      
     }
     
     function init() {		
@@ -20,13 +13,14 @@ var Run = (function() {
 		$("#readRecords").click(readDocuments);*/
 	}
 	
-	var readMarkdown = function() {
-		console.log("read Markdown called");
-		$.getJSON('/insertMarkDown', function(data) {
-			var result = JSON.stringify(data);
-			alert(result);
-		});
-	};
+	var readIn = function() {
+		// Call the server's app.get('/read', function() {}); function
+        $.get('/read', function(data) {
+            $('#showData').html(data)
+        }).error(function(err) {
+            console.log(err.responseText);
+        });
+    };
 
     // return the constructor.
     return Run;

@@ -19,14 +19,6 @@ var Run = (function() {
 		/*$("#showData").click(showData);
 		$("#readRecords").click(readDocuments);*/
 	}
-	
-	var readMarkdown = function() {
-		console.log("read Markdown called");
-		$.getJSON('/insertMarkDown', function(data) {
-			var result = JSON.stringify(data);
-			alert(result);
-		});
-	};
 
     // return the constructor.
     return Run;
