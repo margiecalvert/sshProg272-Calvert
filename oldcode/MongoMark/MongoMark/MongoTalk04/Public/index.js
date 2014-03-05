@@ -7,10 +7,8 @@ var Run = (function() {
     
     function init() {		
 		$("#readIn").click(readIn);
-		//$("#convert").click(convert);
+		$("#convert").click(convert);
 		$("#display").click(display);
-		$("#displayR").click(displayR);
-		$("#displayJ").click(displayJ);
 		/*$("#showData").click(showData);
 		$("#readRecords").click(readDocuments);*/
 	}
@@ -19,59 +17,6 @@ var Run = (function() {
 		// Call the server's app.get('/read', function() {}); function
         $.get('/read', function(data) {
             $('#showData').html(data)
-        }).error(function(err) {
-            console.log(err.responseText);
-        });
-    };
-    
-    var display1 = function() {
-		// Call the server's app.get('/read', function() {}); function
-        $.get('/read', function(data) {
-			var textToDisplay = $(data).filter("#george-washington").html();
-            $('#showData ').html(textToDisplay)
-        }).error(function(err) {
-            console.log(err.responseText);
-        });
-    };
-    
-    var display = function() {
-		// Call the server's app.get('/read', function() {}); function
-        $.get('/read', function(data) {
-			var textToDisplay = $(data).filter("#george-washington").nextUntil("#teddy-roosevelt").addBack();
-            $('#showData ').html(textToDisplay)
-        }).error(function(err) {
-            console.log(err.responseText);
-        });
-    };
-    
-      var displayR = function() {
-		// Call the server's app.get('/read', function() {}); function
-        $.get('/read', function(data) {
-			var textToDisplay = $(data).filter("#teddy-roosevelt").nextUntil("#thomas-jefferson").addBack();
-            $('#showData ').html(textToDisplay)
-        }).error(function(err) {
-            console.log(err.responseText);
-        });
-    };
-    
-    var displayJ = function() {
-		// Call the server's app.get('/read', function() {}); function
-        $.get('/read', function(data) {
-			var textToDisplay = $(data).filter("#thomas-jefferson").nextUntil("#margie").addBack();
-            $('#showData ').html(textToDisplay)
-        }).error(function(err) {
-            console.log(err.responseText);
-        });
-    };
-    
-    var display2 = function() {
-		
-		// Call the server's app.get('/read', function() {}); function
-        $.get('/read', function(data) {
-			var query = $("#george-washington", '<div>' + data + '</div>')
-				.nextUntil('#teddy-roosevelt')
-				.addBack();
-            $('#showData ').html(query)
         }).error(function(err) {
             console.log(err.responseText);
         });

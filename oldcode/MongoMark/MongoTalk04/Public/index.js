@@ -7,10 +7,8 @@ var Run = (function() {
     
     function init() {		
 		$("#readIn").click(readIn);
-		//$("#convert").click(convert);
+		$("#convert").click(convert);
 		$("#display").click(display);
-		$("#displayR").click(displayR);
-		$("#displayJ").click(displayJ);
 		/*$("#showData").click(showData);
 		$("#readRecords").click(readDocuments);*/
 	}
@@ -38,26 +36,6 @@ var Run = (function() {
 		// Call the server's app.get('/read', function() {}); function
         $.get('/read', function(data) {
 			var textToDisplay = $(data).filter("#george-washington").nextUntil("#teddy-roosevelt").addBack();
-            $('#showData ').html(textToDisplay)
-        }).error(function(err) {
-            console.log(err.responseText);
-        });
-    };
-    
-      var displayR = function() {
-		// Call the server's app.get('/read', function() {}); function
-        $.get('/read', function(data) {
-			var textToDisplay = $(data).filter("#teddy-roosevelt").nextUntil("#thomas-jefferson").addBack();
-            $('#showData ').html(textToDisplay)
-        }).error(function(err) {
-            console.log(err.responseText);
-        });
-    };
-    
-    var displayJ = function() {
-		// Call the server's app.get('/read', function() {}); function
-        $.get('/read', function(data) {
-			var textToDisplay = $(data).filter("#thomas-jefferson").nextUntil("#margie").addBack();
             $('#showData ').html(textToDisplay)
         }).error(function(err) {
             console.log(err.responseText);
