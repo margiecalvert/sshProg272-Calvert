@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Mongo Talk 04</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="Public/index.css" rel="stylesheet" type="text/css">
+  <script src="Public/jquery-2.1.0.js"></script>
+  <script src="Library/PubSubOn.js"></script>
+  <script src="Public/index.js"></script>
+  <script src="Public/ClientUi.js"></script>
+</head>
+<body>
+
+<section id="intro"> </section>
+
+<section id="buttonBasic"> </section>
+
+<hr />
+
+<input type="number" id="numRequested" value = "3">
+<button id="readRecords">Read X Records</button>
+
+<div class="dataDisplay">
+	<p><span id="title"> </span> <span id="author"> </span></p>
+	<p><span id="keywords"> </span></p>
+	<p><span id="content"> </span> 
+</div>
+
+<hr />
+
+<input type="number" id="userIndex" value=3>
+<button id="showData">Show Sonnet</button>
+
+<ul id="mongoData"> </ul>
+
+<hr />
+
+<ul>
+	<li><a href="../Tests/TestClient.html">Unit Tests</a></li>
+	<li><a href="../Tests/TestJQueryClient.html">Jasmine-jQuery Unit Tests</a></li>
+</ul>
+
+<hr />
+
+<h2>PubSub Debug Info</h2>
+<p>Header: </p>
+<pre id="debugPubSubHeader"> </pre>
+<p>Content:</p>
+<pre id="debugPubSubContent"> </pre>
+</body>
+</html>
