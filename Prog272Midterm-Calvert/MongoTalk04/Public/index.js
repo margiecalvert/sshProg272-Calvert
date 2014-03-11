@@ -4,9 +4,10 @@ var MongoData = (function() {'use strict';
 
 	function MongoData() {
 		$('#buttonBasic').load("Public/Pieces.html #buttonTemplate", function() {			
-			$("#readTwo").click(readTwo);
+			//$("#readTwo").click(readTwo);
 			//$("#readChosen").click(readChosen);
-			$("#newRecord").click(insertNewDocument);
+			//$("#newRecord").click(insertNewDocument);
+			$("#newRecord").click(insertHopkins);
 			$("#showData").click(showData);
 			$("#readRecords").click(readDocuments);
 			$("#clearList").click(clearList);
@@ -25,8 +26,8 @@ var MongoData = (function() {'use strict';
 		$('#author').html(mongoData[index].author);
 		$('#keywords').html(mongoData[index].keywords);
 		$('#content').html(mongoData[index].content);
-		//$('#state').html(mongoData[index].state);
-		//$('#zip').html(mongoData[index].zip);
+		$('#state').html(mongoData[index].state);
+		$('#zip').html(mongoData[index].zip);
 	};
 
 	var showData = function() {
@@ -69,6 +70,14 @@ var MongoData = (function() {'use strict';
 	var insertNewDocument = function() {
 		console.log("insert New Record called");
 		$.getJSON('/insertJson', function(data) {
+			var result = JSON.stringify(data);
+			alert(result);
+		});
+	};
+	
+	var insertHopkins = function() {
+		console.log("insert New Record called");
+		$.getJSON('/insertHopkins', function(data) {
 			var result = JSON.stringify(data);
 			alert(result);
 		});

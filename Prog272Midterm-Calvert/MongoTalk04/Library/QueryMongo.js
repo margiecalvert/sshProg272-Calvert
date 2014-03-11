@@ -123,20 +123,7 @@ var QueryMongo = (function() {'use strict';
 		});
 	};
 	
-	QueryMongo.prototype.getOneDocument = function(initResponse, count, index) {
-		console.log("QueryMongo.getDocuments called");
-		response = initResponse;
-		getDatabase(function getCol(database) {
-			var collection = database.collection(collectionName);
-
-			// Send the collection to the client.
-			collection.find().limit(count).toArray(function(err, theArray) {
-				console.dir(theArray);
-				if (callClose) { closeDatabase(); }
-				response.send(theArray[index]);
-			});
-		});
-	};
+	
 
 	// Get the number of documents in the collection
 	QueryMongo.prototype.getDocumentCount = function(initResponse) {

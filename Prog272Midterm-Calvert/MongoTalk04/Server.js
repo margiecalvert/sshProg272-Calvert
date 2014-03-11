@@ -45,6 +45,12 @@ app.get('/insertJson', function(request, response) { 'use strict';
 	queryMongo.insertIntoCollection(response, JSON.parse(fileContent));
 });
 
+app.get('/insertHopkins', function(request, response) { 'use strict';
+	message("Server side request for newDocument route");
+	var fileContent = fs.readFileSync('Hopkins.json', 'utf8');
+	queryMongo.insertIntoCollection(response, JSON.parse(fileContent));
+});
+
 app.get('/insertMarkdown', function(request, response) {
 	message('insertMarkdown');
 	var jsonObject = queryMongo.readMarkDown("Presidents", markdownName);
