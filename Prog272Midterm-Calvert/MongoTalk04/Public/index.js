@@ -4,7 +4,7 @@ var MongoData = (function() {'use strict';
 
 	function MongoData() {
 		$('#buttonBasic').load("Public/Pieces.html #buttonTemplate", function() {			
-			//$("#readTwo").click(readTwo);
+			$("#removeByAuthor").click(removeByAuthor);
 			//$("#readChosen").click(readChosen);
 			//$("#newRecord").click(insertNewDocument);
 			$("#newRecord").click(insertHopkins);
@@ -80,6 +80,14 @@ var MongoData = (function() {'use strict';
 		$.getJSON('/insertHopkins', function(data) {
 			var result = JSON.stringify(data);
 			alert(result);
+		});
+	};
+	
+	var removeByAuthor = function() {
+		console.log("remove Hopkins called");
+		$.getJSON('/removeByAuthor', function(data) {
+			//var result = JSON.stringify(data);
+			alert("Hopkins deleted in index.js");
 		});
 	};
 

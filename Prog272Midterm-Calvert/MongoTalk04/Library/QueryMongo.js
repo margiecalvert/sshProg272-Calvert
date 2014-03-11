@@ -225,6 +225,21 @@ var QueryMongo = (function() {'use strict';
 
 		});
 	};
+	
+	QueryMongo.prototype.removeByAuthor = function(id) {
+		console.log("QueryMongo.removeByAuthor called");
+		getDatabase(function getCol(database) {
+			var collection = database.collection(collectionName);
+			collection.remove({ "author" : "Hopkins" }, 1, function(err, data) {
+				if (err) {
+					throw err;
+				}
+				if (callClose) { closeDatabase(); }
+				console.log("Querymongo Hopkins deleted");
+			});
+
+		});
+	};
 
 	QueryMongo.prototype.removeAll = function(response) {
 		console.log("QueryMongo.removeAll called");

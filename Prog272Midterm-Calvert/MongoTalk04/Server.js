@@ -64,7 +64,11 @@ app.get('/hello', function(request, response) { 'use strict';
 app.get('/barfoo', function(request, response) { 'use strict';
 	response.send('foobar');
 });
-
+app.get('/removeByAuthor', function(request, response) {'use strict';
+	console.log('/remove by Author Called');
+	queryMongo.removeByAuthor();	
+	response.send({ result: "remove by author Called"});
+});
 
 app.get('/remove', function(request, response) {'use strict';
 	console.log('/remove Called');
