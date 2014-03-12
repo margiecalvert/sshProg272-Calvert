@@ -5,11 +5,13 @@ var MongoData = (function() {'use strict';
 	function MongoData() {
 		$('#buttonBasic').load("Public/Pieces.html #buttonTemplate", function() {			
 			$("#removeByAuthor").click(removeByAuthor);
+			$("#removeAll").click(removeAll);
 			$("#newRecord").click(insertNewDocument);
 			$("#insertHopkins").click(insertHopkins);
 			$("#showData").click(showData);
 			$("#readRecords").click(readDocuments);
 			$("#clearList").click(clearList);
+			$("#findFairest").click(findFairest);
 			$.publish('buttonsLoaded', {id: "buttonBasic", list:'readTwo, newRecord, showData, readRecords, clearList'});
 		});
 		$('#intro').load("Public/Pieces.html #introTemplate");
@@ -25,8 +27,17 @@ var MongoData = (function() {'use strict';
 		$('#author').html(mongoData[index].author);
 		$('#keywords').html(mongoData[index].keywords);
 		$('#content').html(mongoData[index].content);
-		$('#state').html(mongoData[index].state);
-		$('#zip').html(mongoData[index].zip);
+		//$('#state').html(mongoData[index].state);
+		//$('#zip').html(mongoData[index].zip);
+	};
+	
+	var displayTitle = function(index) {
+		$('#title').html(mongoData[index].title);
+		//$('#author').html(mongoData[index].author);
+		//$('#keywords').html(mongoData[index].keywords);
+		//$('#content').html(mongoData[index].content);
+		//$('#state').html(mongoData[index].state);
+		//$('#zip').html(mongoData[index].zip);
 	};
 
 	var showData = function() {
@@ -34,6 +45,35 @@ var MongoData = (function() {'use strict';
 		index = index-1;
 		displayRecord(index);
 	};
+	//db.Poems.find({ keywords: {keyword: "fairest" }}, { title: 1, author: 1})
+
+	// db.Poems.find({ keywords: {"keyword": "fairest" }}, { title: 1})
+	// find({ keywords: {"keyword": "fairest" }})	
+	var findFairest = function() {
+		console.log("find keywords called");
+		$.getJSON('/findKeywords', function(data) {
+			console.log("in Keywords in index.js");
+		});
+	};
+	
+	var display1 = function() {
+		// Call the server's app.get('/read', function() {}); function
+        $.get('/read', function(data) {
+			var textToDisplay = $(data).filter("#george-washington").html();
+            $('#showData ').html(textToDisplay)
+        }).error(function(err) {
+            console.log(err.responseText);
+        });
+    };
+	/*var findKeywords = function() {
+		var keywordPoems = []; 
+		keywordPoems = $.grep(mongoData
+		
+	var choosePoemByKeywords(){	
+		var index = $("#userIndex").val();
+		index = index-1;
+		displayRecord(index);
+	};*/
 
 	function foo() {
 		var allRecords = readAll();
@@ -91,6 +131,14 @@ var MongoData = (function() {'use strict';
 			alert("Hopkins deleted in index.js");
 		});
 	};
+	
+	var removeAll = function() {
+		console.log("remove all called");
+		$.getJSON('/removeAll', function(data) {
+			//var result = JSON.stringify(data);
+			alert("All records deleted in index.js");
+		});
+	};
 
 	var readTwo = function() {
 		console.log("readTwo called");
@@ -122,6 +170,12 @@ var MongoData = (function() {'use strict';
 		});
 
 	};
+	
+	
+		
+		
+		
+		
 	
 	
 

@@ -52,12 +52,17 @@ function message(message) {
 	console.log(message);
 	console.log("------------");
 }
+app.get('/findKeywords', function(request, response) { 'use strict';
+	queryMongo.findKeywords(response);
+});
 
+
+/*
 app.get('/insertJson', function(request, response) { 'use strict';
 	message("Server side request for newDocument route");
 	var fileContent = fs.readFileSync('Shakespeare.json', 'utf8');
 	queryMongo.insertIntoCollection(response, JSON.parse(fileContent));
-});
+});*/
 
 app.get('/insertHopkins', function(request, response) { 'use strict';
 	message("Server side request for newDocument route");

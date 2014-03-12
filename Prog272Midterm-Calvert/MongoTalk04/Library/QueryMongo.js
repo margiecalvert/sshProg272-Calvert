@@ -178,6 +178,8 @@ var QueryMongo = (function() {'use strict';
 		var fileContent = fs.readFileSync(fileName, 'utf8');
 		return fileContent;
 	}
+	
+	
 
 
 	QueryMongo.prototype.readFileOut = function(response) {
@@ -196,9 +198,45 @@ var QueryMongo = (function() {'use strict';
 			});
 		});
 	};
+	
+	/*QueryMongo.prototype.findKeywords = function(response) {
+		console.log("findKeywords called in QueryMongo");
+		getDatabase(function(database) {
+			var collection = database.collection(collectionName);
+			collection.find({ keywords: {keyword: "fairest" }}).toArray(function(err, theArray) {
+				if (err) {
+					throw err;
+				}}
+				//if (callClose) { closeDatabase(); }
+				console.log(typeof theArray[theArray.length-1].text);
+				var output = theArray[theArray.length-1].text;
+				console.log(output);
+				writeFile(response, output);
+				//response.send(theArray[0]);
+			});
+		});
+	};  */
+	
+	QueryMongo.prototype.findKeywords = function(initResponse) {
+		console.log("QueryMongo.findKeywords called");
+		response = initResponse;
+		getDatabase(function getCol(database) {
+			var collection = database.collection(collectionName);
+
+			// Send the collection to the client.
+			collection.find({ keywords: {keyword: "fairest" }}).toArray(function(err, theArray) {
+				console.dir(theArray);
+				if (callClose) { closeDatabase(); }
+				console.log(theArray);
+				response.send(theArray);
+			});
+		});
+	};
+	
+//db.Poems.find({ keywords: {keyword: "fairest" }}, { title: 1, author: 1})
 
 	var writeFile = function(response, jsonString) {
-		fs.writeFile("test.md", jsonString, function(err) {
+		fs.writeFile("fairest.json", jsonString, function(err) {
 			if(err) {
 				console.log(err);
 			} else {
