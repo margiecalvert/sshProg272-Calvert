@@ -224,7 +224,7 @@ var QueryMongo = (function() {'use strict';
 			var collection = database.collection(collectionName);
 
 			// Send the collection to the client.
-			collection.find({ keywords: {keyword: "fairest" }}).toArray(function(err, theArray) {
+			collection.find({ keywords: {keyword: "fairest" }}, { title: 1, author: 1}).toArray(function(err, theArray) {
 				console.dir(theArray);
 				if (callClose) { closeDatabase(); }
 				console.log(theArray);
