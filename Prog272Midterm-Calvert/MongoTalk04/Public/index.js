@@ -5,9 +5,8 @@ var MongoData = (function() {'use strict';
 	function MongoData() {
 		$('#buttonBasic').load("Public/Pieces.html #buttonTemplate", function() {			
 			$("#removeByAuthor").click(removeByAuthor);
-			//$("#readChosen").click(readChosen);
-			//$("#newRecord").click(insertNewDocument);
-			$("#newRecord").click(insertHopkins);
+			$("#newRecord").click(insertNewDocument);
+			$("#insertHopkins").click(insertHopkins);
 			$("#showData").click(showData);
 			$("#readRecords").click(readDocuments);
 			$("#clearList").click(clearList);
@@ -75,8 +74,10 @@ var MongoData = (function() {'use strict';
 		});
 	};
 	
+	
+	
 	var insertHopkins = function() {
-		console.log("insert New Record called");
+		console.log("insert Hopkins called");
 		$.getJSON('/insertHopkins', function(data) {
 			var result = JSON.stringify(data);
 			alert(result);

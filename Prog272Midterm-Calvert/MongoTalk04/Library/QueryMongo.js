@@ -173,6 +173,11 @@ var QueryMongo = (function() {'use strict';
 
 		return myJson;
 	};
+	
+	QueryMongo.prototype.readJson = function(fileName){
+		var fileContent = fs.readFileSync(fileName, 'utf8');
+		return fileContent;
+	}
 
 
 	QueryMongo.prototype.readFileOut = function(response) {

@@ -9,6 +9,7 @@ var fs = require('fs');
 var qm = require('./Library/QueryMongo');
 var queryMongo = qm.QueryMongo; 
 var markdownName = "Presidents.md";
+var jsonName = 'Shakespeare.json';
 
 // Read the collection
 app.get('/readAll', function(request, response) {'use strict';
@@ -18,6 +19,19 @@ app.get('/readAll', function(request, response) {'use strict';
 app.get('/getDocumentCount', function(request, response) {'use strict';
 	queryMongo.getDocumentCount(response);
 });
+
+app.get('/insertJson', function(request, response) {
+	console.log('insertJson called');
+	var jsonObject = queryMongo.readJson(jsonName);
+	jsonObject = JSON.parse(jsonObject);
+	queryMongo.insertIntoCollection(response, jsonObject);
+});
+
+app.get('/readJson', function(request, response) {
+	console.log("readJson called");
+	var jsonObject = queryMongo.readJson('Shakespeare.json', jsonName);
+	response.send(jsonObject);
+})
 
 app.get('/readTwo', function(request, response) { 'use strict';
 	queryMongo.getDocuments(response, 2);
