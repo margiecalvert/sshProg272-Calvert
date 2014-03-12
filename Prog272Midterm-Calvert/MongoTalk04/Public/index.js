@@ -12,6 +12,7 @@ var MongoData = (function() {'use strict';
 			$("#readRecords").click(readDocuments);
 			$("#clearList").click(clearList);
 			$("#findFairest").click(findFairest);
+			$("#findTyrant").click(findTyrant);
 			$.publish('buttonsLoaded', {id: "buttonBasic", list:'readTwo, newRecord, showData, readRecords, clearList'});
 		});
 		$('#intro').load("Public/Pieces.html #introTemplate");
@@ -53,6 +54,13 @@ var MongoData = (function() {'use strict';
 		console.log("find keywords called");
 		$.getJSON('/findKeywords', function(data) {
 			console.log("in Keywords in index.js");
+		});
+	};
+	
+	var findTyrant = function() {
+		console.log("find keywords2 called");
+		$.getJSON('/findKeywords2', function(data) {
+			console.log("in Keywords2 in index.js");
 		});
 	};
 	

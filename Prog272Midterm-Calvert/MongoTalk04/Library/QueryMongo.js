@@ -227,7 +227,23 @@ var QueryMongo = (function() {'use strict';
 			collection.find({ keywords: {keyword: "fairest" }}, { title: 1, author: 1}).toArray(function(err, theArray) {
 				console.dir(theArray);
 				if (callClose) { closeDatabase(); }
-				console.log(theArray);
+				//console.log(theArray);
+				response.send(theArray);
+			});
+		});
+	};
+	
+	QueryMongo.prototype.findKeywords2 = function(initResponse) {
+		console.log("QueryMongo.findKeywords called");
+		response = initResponse;
+		getDatabase(function getCol(database) {
+			var collection = database.collection(collectionName);
+
+			// Send the collection to the client.
+			collection.find({ keywords: {keyword: "tyrant" }}, { title: 1, author: 1}).toArray(function(err, theArray) {
+				console.dir(theArray);
+				if (callClose) { closeDatabase(); }
+				//console.log(theArray);
 				response.send(theArray);
 			});
 		});

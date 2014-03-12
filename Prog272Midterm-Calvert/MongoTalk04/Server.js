@@ -56,7 +56,9 @@ app.get('/findKeywords', function(request, response) { 'use strict';
 	queryMongo.findKeywords(response);
 });
 
-
+app.get('/findKeywords2', function(request, response) { 'use strict';
+	queryMongo.findKeywords2(response);
+});
 /*
 app.get('/insertJson', function(request, response) { 'use strict';
 	message("Server side request for newDocument route");
