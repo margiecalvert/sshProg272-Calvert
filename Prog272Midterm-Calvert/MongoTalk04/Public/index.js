@@ -49,7 +49,7 @@ var MongoData = (function() {'use strict';
 		$.getJSON('/findKeywords', function(data) {
 			console.log("in Keywords in index.js");
 			for (var i = 0; i < data.length; i++) {
-				$("#keywordsData").append('<li>' + JSON.stringify(data[i]) + '</li>');
+				$("#keywordsData").append('<li>' + "Sonnet containing 'fairest'" + JSON.stringify(data[i]) + '</li>');
 			}
 		});
 	};
@@ -59,7 +59,7 @@ var MongoData = (function() {'use strict';
 		$.getJSON('/findKeywords2', function(data) {
 			console.log("in Keywords2 in index.js");
 			for (var i = 0; i < data.length; i++) {
-				$("#keywords2Data").append('<li>' + JSON.stringify(data[i]) + '</li>');
+				$("#keywords2Data").append('<li>' + "Sonnet containing 'tyrant'" + JSON.stringify(data[i]) + '</li>');
 			}
 		});
 	};
