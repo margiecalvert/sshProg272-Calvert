@@ -13,6 +13,7 @@ var MongoData = (function() {'use strict';
 			$("#clearList").click(clearList);
 			$("#findFairest").click(findFairest);
 			$("#findTyrant").click(findTyrant);
+			$("#").click(findTyrant);
 			$.publish('buttonsLoaded', {id: "buttonBasic", list:'readTwo, newRecord, showData, readRecords, clearList'});
 		});
 		$('#intro').load("Public/Pieces.html #introTemplate");
@@ -21,6 +22,9 @@ var MongoData = (function() {'use strict';
 
 	var clearList = function() {
 		$("#mongoData").empty();
+		$("#keywordsData").empty();
+		$("#keywords2Data").empty();
+		
 	};
 
 	var displayRecord = function(index) {
@@ -32,28 +36,21 @@ var MongoData = (function() {'use strict';
 		//$('#zip').html(mongoData[index].zip);
 	};
 	
-	var displayTitle = function(index) {
-		$('#title').html(mongoData[index].title);
-		//$('#author').html(mongoData[index].author);
-		//$('#keywords').html(mongoData[index].keywords);
-		//$('#content').html(mongoData[index].content);
-		//$('#state').html(mongoData[index].state);
-		//$('#zip').html(mongoData[index].zip);
-	};
+	
 
 	var showData = function() {
 		var index = $("#userIndex").val();
 		index = index-1;
 		displayRecord(index);
 	};
-	//db.Poems.find({ keywords: {keyword: "fairest" }}, { title: 1, author: 1})
-
-	// db.Poems.find({ keywords: {"keyword": "fairest" }}, { title: 1})
-	// find({ keywords: {"keyword": "fairest" }})	
+	
 	var findFairest = function() {
 		console.log("find keywords called");
 		$.getJSON('/findKeywords', function(data) {
 			console.log("in Keywords in index.js");
+			for (var i = 0; i < data.length; i++) {
+				$("#keywordsData").append('<li>' + JSON.stringify(data[i]) + '</li>');
+			}
 		});
 	};
 	
@@ -61,27 +58,14 @@ var MongoData = (function() {'use strict';
 		console.log("find keywords2 called");
 		$.getJSON('/findKeywords2', function(data) {
 			console.log("in Keywords2 in index.js");
+			for (var i = 0; i < data.length; i++) {
+				$("#keywords2Data").append('<li>' + JSON.stringify(data[i]) + '</li>');
+			}
 		});
 	};
 	
-	var display1 = function() {
-		// Call the server's app.get('/read', function() {}); function
-        $.get('/read', function(data) {
-			var textToDisplay = $(data).filter("#george-washington").html();
-            $('#showData ').html(textToDisplay)
-        }).error(function(err) {
-            console.log(err.responseText);
-        });
-    };
-	/*var findKeywords = function() {
-		var keywordPoems = []; 
-		keywordPoems = $.grep(mongoData
-		
-	var choosePoemByKeywords(){	
-		var index = $("#userIndex").val();
-		index = index-1;
-		displayRecord(index);
-	};*/
+	
+	
 
 	function foo() {
 		var allRecords = readAll();

@@ -199,23 +199,6 @@ var QueryMongo = (function() {'use strict';
 		});
 	};
 	
-	/*QueryMongo.prototype.findKeywords = function(response) {
-		console.log("findKeywords called in QueryMongo");
-		getDatabase(function(database) {
-			var collection = database.collection(collectionName);
-			collection.find({ keywords: {keyword: "fairest" }}).toArray(function(err, theArray) {
-				if (err) {
-					throw err;
-				}}
-				//if (callClose) { closeDatabase(); }
-				console.log(typeof theArray[theArray.length-1].text);
-				var output = theArray[theArray.length-1].text;
-				console.log(output);
-				writeFile(response, output);
-				//response.send(theArray[0]);
-			});
-		});
-	};  */
 	
 	QueryMongo.prototype.findKeywords = function(initResponse) {
 		console.log("QueryMongo.findKeywords called");
