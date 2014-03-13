@@ -4,12 +4,12 @@ body {
 
 .dataDisplay {
 	background-color: #55AAAA;
-	width: 250px;
+	width: 450px;
 	border: solid black 3px;
 	padding: 25px;
 }
 
-.dataDisplay p {
+.dataDisplay p, pre {
 	border: solid black 1px;
 	margin: 2px;
 	background-color: #BBAAFF;
