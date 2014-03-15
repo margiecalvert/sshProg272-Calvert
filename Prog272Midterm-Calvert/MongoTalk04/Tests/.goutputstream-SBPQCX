@@ -44,7 +44,7 @@ describe("A Mongo Suite", function() { 'use strict';
 	});*/
 
 
-	it("should respond with hello there", function(done) {
+	/*it("should respond with hello there", function(done) {
 		console.log('Calling Hello');
 		request(server + "hello", function(error, response, body) {
 			if (typeof body === 'undefined') {
@@ -55,7 +55,7 @@ describe("A Mongo Suite", function() { 'use strict';
 		});
 	});
 
-	/*it("should respond with goober", function(done) {
+	it("should respond with goober", function(done) {
 		console.log('Calling Hello');
 		request("http://localhost:30025/barfoo", function(error, response, bar) {
 			console.log(response.statusCode);
@@ -70,12 +70,12 @@ describe("A Mongo Suite", function() { 'use strict';
 			// Convert result from a JSON string to a JSON object
 			body = JSON.parse(body);
 			//console.log(body);
-			expect(body.documentCount).toBeGreaterThan(150);
+			expect(body.documentCount).toBeGreaterThan(153);
 			done();
 		});
 	});
 
-	/*it("should read two documents", function(done) {
+	it("should read two documents", function(done) {
 		request("http://localhost:30025/readTwo", function(error, response, body) {
 			console.log("Calling test two records");
 
@@ -99,7 +99,7 @@ describe("A Mongo Suite", function() { 'use strict';
 			expect(body.length).toEqual(3);
 			done();
 		});
-	});*/
+	});
 
 	it("should read all the documents", function(done) {
 		request("http://localhost:30025/readAll", function(error, response, body) {
@@ -109,12 +109,12 @@ describe("A Mongo Suite", function() { 'use strict';
 			body = JSON.parse(body);
 
 			//console.log(body);
-			expect(body.length).toBeGreaterThan(150);
+			expect(body.length).toBeGreaterThan(3);
 			done();
 		});
 	});
 
-	/*it("should find George Washington in PresidentsIn.md", function(done) {
+	it("should find George Washington in PresidentsIn.md", function(done) {
 		console.log('Calling readMarkdown');
 		request("http://localhost:30025/readMarkdown", function(error, response, jsonObject) {
 			if(error) {
@@ -143,6 +143,6 @@ describe("A Mongo Suite", function() { 'use strict';
 			expect(input).toBe('<h2 id="george-washington">George Washington</h2>');
 			done();
 		});
-	});*/
+	});
 
 });

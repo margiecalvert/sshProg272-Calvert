@@ -11,7 +11,7 @@ function test() {
 			expect(true).toBe(true);
 		});
 
-		it('Manually finds if the word *talk* has been loaded into the page', function(done) {
+		/*it('Manually finds if the word *talk* has been loaded into the page', function(done) {
 			$("#test").load("../Public/Pieces.html #introTemplate", function() {				
 				var test = $('#test');
 				var foo = test.text();
@@ -24,9 +24,9 @@ function test() {
 		it('Uses Jasmine-JQuery to check for the word *talk* using loadFixtures and toContainText', function() {
 			loadFixtures('Pieces.html');
 			expect($("#introTemplate")).toContainText("Talk");
-		});
+		});*/
 		
-		/* 
+		
 		it('Uses Jasmine-JQuery to spy on a button click', function(done) {
 			loadFixtures('Pieces.html');
 			var elementName = '#readAll';
@@ -38,7 +38,7 @@ function test() {
 			// $(elementName).click(mongoData.readAll);
 			$(elementName).click();
 			
-		}); */
+		}); 
 		
 		it('Uses Jasmine-JQuery to spy on a button click', function() {
 			loadFixtures('Pieces.html');
