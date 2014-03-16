@@ -8,6 +8,7 @@ var MongoData = (function() {'use strict';
 			$("#removeAll").click(removeAll);
 			$("#newRecord").click(insertNewDocument);
 			$("#insertHopkins").click(insertHopkins);
+			$("readAll").click(readAll);
 			$("#showData").click(showData);
 			$("#readRecords").click(readDocuments);
 			$("#clearList").click(clearList);
@@ -147,7 +148,7 @@ var MongoData = (function() {'use strict';
 	};
 
 	var readDocuments = function() {
-		console.log("readTwo called");
+		console.log("readDocuments called");
 		var request = {};
 		request.numRequested = $('#numRequested').val();
 		$.getJSON('/readDocuments', request, function(data) {
