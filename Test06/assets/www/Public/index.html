@@ -1,16 +1,16 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
+  <meta name="format-detection" content="telephone=no" />
   <title>Margie Calvert Midterm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="Public/index.css" rel="stylesheet" type="text/css">
-  <script src="Public/jquery-2.1.0.js"></script>
-  <script src="Library/PubSubOn.js"></script>
-  <script src="Public/index.js"></script>
-  <script src="Public/ClientUi.js"></script>
+  <link href="index.css" rel="stylesheet" type="text/css">
+  <script src="jquery-2.1.0.js"></script>
+  <script src="PubSubOn.js"></script>
+  <script src="index.js"></script>
+  <script src="ClientUi.js"></script>
 </head>
 <body>
 
@@ -66,5 +66,17 @@
 <pre id="debugPubSubHeader"> </pre>
 <p>Content:</p>
 <pre id="debugPubSubContent"> </pre>
+<div class="app">
+            <h1>Apache Cordova</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
 </body>
 </html>
