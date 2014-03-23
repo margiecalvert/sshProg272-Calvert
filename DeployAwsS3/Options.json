@@ -1,0 +1,12 @@
+[
+	{
+		"pathToConfig": "/home/adminuser/bin/DeployAwsS3/config.json",
+		"reallyWrite": true,
+		"bucketName": "thursdaymargie",
+		"folderToWalk": "/var/www/bc/Final",
+		"s3RootFolder": "Final",
+		"createFolderToWalkOnS3": true,
+		"createIndex": true,
+		"filesToIgnore": ["Thumbs.db", ".gitignore", "MyFile.html"]
+	}
+]
