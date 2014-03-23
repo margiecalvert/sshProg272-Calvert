@@ -1,10 +1,10 @@
 [
 	{
-		"pathToConfig": "/home/adminuser/bin/DeployAwsS3/config.json",
+		"pathToConfig": "/home/adminuser/Documents/GitMargie/sshProg272-Calvert/DeployAwsS3/config.json",
 		"reallyWrite": true,
 		"bucketName": "thursdaymargie",
 		"folderToWalk": "/var/www/bc/Final",
-		"s3RootFolder": "Final",
+		"s3RootFolder": "final",
 		"createFolderToWalkOnS3": true,
 		"createIndex": true,
 		"filesToIgnore": ["Thumbs.db", ".gitignore", "MyFile.html"]
