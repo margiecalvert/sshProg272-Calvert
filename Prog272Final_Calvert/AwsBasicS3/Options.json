@@ -1,7 +1,7 @@
 [
     {
         "pathToConfig": "/home/adminuser/Config/config.json",
-        "reallyWrite": "false",
+        "reallyWrite": true,
         "bucketName": "thursdaymargie",
         "folderToWalk": "/var/www/bc",
         "s3RootFolder": "thursdaymargie",

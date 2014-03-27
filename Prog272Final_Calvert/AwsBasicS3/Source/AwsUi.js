@@ -42,17 +42,27 @@ define(['jquery'], function() {'use strict';
     var saveOptions = function() {
 		var pathToConfig = $("#pathToConfig").val();
         options[dataIndex].pathToConfig = pathToConfig;
-        var reallyWrite = $("#reallyWrite").val();
-        options[dataIndex].reallyWrite = reallyWrite;
+        var reallyWrite = $("#reallyWrite").val();        
+        options[dataIndex].reallyWrite = reallyWrite === "true" ? true : false;       
+        console.log(typeof reallyWrite);
         $.getJSON("/saveOptions", {
             options : JSON.stringify(options)
-        }, function(data) {
-			$("#changeResult").html(data.result + changeCount++);			
-		    $("#pathToConfig").val = options[dataIndex].pathToConfig;
-		    $("#reallyWrite").val = options[dataIndex].reallyWrite;		 		    
+           
+            }, function(data) {
+			$("#changeResult").html(data.result + changeCount++); 
+			$("#pathToConfig").val = options[dataIndex].pathToConfig; 
+			$("#reallyWrite").val = $("#reallyWrite").val(options[dataIndex].reallyWrite ? "true" : "false");
+			
 		});
     };
     
+	/*var convertToBool = function(string) {
+		if(string ="true") {  
+		    return true;  
+		} else {  
+			return false;  
+		}
+	}*/
 
     var copyToS3 = function() {
         $.getJSON("/copyToS3", {

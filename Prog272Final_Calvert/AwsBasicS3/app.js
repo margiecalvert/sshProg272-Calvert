@@ -94,8 +94,9 @@ app.get('/saveOptions', function(request, response) {'use strict';
 	// This is just to create pretty format, the next two lines can be deleted.
 	options = JSON.parse(options);
 	options = JSON.stringify(options, null, 4);
-	//var data = JSON.parse(request.query.options);
-	// console.log("Saved Options are: " + options);
+	
+				
+	
 	fs.writeFile("Options.json", options, "utf8", function(err, data) {			
 		if (err) {
 			console.log("Errror");
