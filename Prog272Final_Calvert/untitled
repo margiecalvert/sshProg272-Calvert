@@ -1,0 +1,25 @@
+MongoTalk05, ClientUI.js has update function for database.
+
+Server02 in MongoTalk has the insert for a data.json file.
+
+Serverjs in MongoMultiCollection has the sytax for multiple collections
+
+workversionindex.js in MongoTalk02 has a displayREcord for an item in the database, or index4.js
+
+******************
+
+created new button on index.html  createNewOption
+on AwsUI created button click     $("#createNewOption").click(createOption);
+
+on Index.html
+
+<div id="myInputOptions">
+        <label for "myOwnPathToConfig">My Own Path To Config</label> <input type = "text" name = myOwnPathToConfig> 
+        <label for "myOwnReallyWrite"> Really Write? </label> <input type = "text" name = myOwnReallyWrite value = "true"> 
+        <label for "myOwnBucketName">My Own AWS Bucket:</label> <input type = "text" name = myOwnBucketName>
+        <label for "myOwnFolderToWalk">My Own Folder to Walk:</label> <input type = "text" name = myOwnFolderToWalk> 
+        <label for "myOwnS3RootFolder">My Own AWS S3 Root Folder:</label> <input type = "text" name = myOwnS3RootFolder> 
+        <label for "myOwnCreateFolderToWalkonS3">My Own Folder to Walk on S3:</label> <input type = "text" name = myOwnCreateFolderToWalkonS3 value = "true"> 
+        <label for "myOwnCreateIndex">My Own Create Index:</label> <input type = "text" name = myOwnCreateIndex value = "true"> 
+        <label for "myOwnFilesToIgnore">My Own Files to Ignore:</label> <input type = "text" name = myOwnFilesToIgnore>  
+ </div>
