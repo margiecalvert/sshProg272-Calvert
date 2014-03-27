@@ -43,8 +43,20 @@ define(['jquery'], function() {'use strict';
 		var pathToConfig = $("#pathToConfig").val();
         options[dataIndex].pathToConfig = pathToConfig;
         var reallyWrite = $("#reallyWrite").val();        
-        options[dataIndex].reallyWrite = reallyWrite === "true" ? true : false;       
-        console.log(typeof reallyWrite);
+        options[dataIndex].reallyWrite = reallyWrite === "true" ? true : false; 
+        var bucketName = $("#bucketName").val();
+        options[dataIndex].bucketName = bucketName;
+        var folderToWalk = $("#folderToWalk").val(); 
+		options[dataIndex].folderToWalk = folderToWalk;
+        var s3RootFolder = $("#s3RootFolder").val();
+        options[dataIndex].s3RootFolder = s3RootFolder; 
+        var createFolderToWalkOnS3 = $("#createFolderToWalkOnS3").val();
+        options[dataIndex].createFolderToWalkOnS3 = createFolderToWalkOnS3 === "true" ? true : false;
+        var createIndex = $("#createIndex").val();
+        options[dataIndex].createIndex = createIndex === "true" ? true : false;    
+        var filesToIgnore = $("#filesToIgnore").val();
+        options[dataIndex].filesToIgnore = filesToIgnore;
+        
         $.getJSON("/saveOptions", {
             options : JSON.stringify(options)
            
@@ -52,7 +64,12 @@ define(['jquery'], function() {'use strict';
 			$("#changeResult").html(data.result + changeCount++); 
 			$("#pathToConfig").val = options[dataIndex].pathToConfig; 
 			$("#reallyWrite").val = $("#reallyWrite").val(options[dataIndex].reallyWrite ? "true" : "false");
-			
+			$("#bucketName").val = options[dataIndex].bucketName;
+			$("#folderToWalk").val = options[dataIndex].folderToWalk;
+			$("#s3RootFolder").val = options[dataIndex].s3RootFolder;
+			$("#createFolderToWalkOnS3").val = $("#createFolderToWalkOnS3").val(options[dataIndex].createFolderToWalkOnS3 ? "true" : "false");
+			$("#createIndex").val = $("#createIndex").val(options[dataIndex].createIndex ? "true" : "false");
+			$("#filesToIgnore").val = options[dataIndex].filesToIgnore;
 		});
     };
     
