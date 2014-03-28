@@ -1,17 +1,13 @@
 [
     {
-        "pathToConfig": "/home/adminuser/Config/config.json",
-        "reallyWrite": true,
+        "pathToConfig": "/home/adminuser/Config/config.json ddd",
+        "reallyWrite": false,
         "bucketName": "thursdaymargie",
-        "folderToWalk": "/var/www/bc",
+        "folderToWalk": "/var/www/bc/",
         "s3RootFolder": "thursdaymargie",
-        "createFolderToWalkOnS3": true,
-        "createIndex": false,
-        "filesToIgnore": [
-            "Thumbs.db",
-            ".gitignore",
-            "MyFile.html"
-        ]
+        "createFolderToWalkOnS3": false,
+        "createIndex": true,
+        "filesToIgnore": "Thumbs.db,.gitignore,MyFile.html"
     },
     {
         "pathToConfig": "c:\\src\\config\\config.json",

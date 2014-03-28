@@ -16,7 +16,7 @@ define(['jquery'], function() {'use strict';
         $("#forwardButton").click(forward);
         $("#backButton").click(backward);
         $("#changeOptions").click(saveOptions);
-
+		$("#changeMTC").click(saveMTC);
         $("#buildAll").click(buildAll);
         getBuildConfig();
         getOptions();
@@ -73,6 +73,35 @@ define(['jquery'], function() {'use strict';
 		});
     };
     
+    var saveMTC = function() {
+		
+		console.log("In saveMTC");
+		console.log("InAWSUI" + transformOptions);
+		
+        
+        var pathToPython = $("#pathToPython").val();
+        transformOptions[dataIndexTransform].pathToPython = pathToPython;
+		var copyFrom = $("#copyFrom").val();
+        transformOptions[dataIndexTransform].copyFrom = copyFrom;
+        var copyTo = $("#copyTo").val();        
+        transformOptions[dataIndexTransform].copyTo = copyTo; 
+        var filesToCopy = $("#filesToCopy").val();
+        transformOptions[dataIndexTransform].filesToCopy = filesToCopy;
+        
+        
+        $.getJSON("/saveMTC", {
+            options : JSON.stringify(transformOptions),
+            index : dataIndexTransform
+            //displayTransformConfig(transformOptions[dataIndexTransform]);
+            }, function(data) {
+			$("#changeResult").html(data.result + changeCount++); 
+			$("#pathToPython").val = transformOptions[dataIndexTransform].pathToPython; 
+			$("#copyFrom").val = transformOptions[dataIndexTransform].copyFrom;
+			$("#copyTo").val = transformOptions[dataIndexTransform].copyTo;
+			$("#filesToCopy").val = transformOptions[dataIndexTransform].filesToCopy;
+			
+		});
+    };
 	/*var convertToBool = function(string) {
 		if(string ="true") {  
 		    return true;  
@@ -151,7 +180,7 @@ define(['jquery'], function() {'use strict';
 	}
     //Charlie's code
 
-	var updateInputs = function() {
+	/*var updateInputs = function() {
 		var pathToConfig = $("#pathToConfig").val();
 		options.pathToConfig = pathToConfig;
 		return options.pathToConfig;

@@ -95,17 +95,37 @@ app.get('/saveOptions', function(request, response) {'use strict';
 	options = JSON.parse(options);
 	options = JSON.stringify(options, null, 4);
 	
-				
-	
 	fs.writeFile("Options.json", options, "utf8", function(err, data) {			
 		if (err) {
 			console.log("Errror");
 			response.send({"result": "Error", "details": err});
 		}
-		console.log("FileWritten");
+		console.log("FileWritten, Options");
 		response.send({"result": "Success", data: data});
 	});
 });
+
+app.get('/saveMTC', function(request, response) {'use strict';
+	console.log("saveMTC called");
+	//var options = fs.readFileSync("MarkdownTransformConfig.json", 'utf8');
+	//options = JSON.parse(options);
+	
+	var options = request.query.options;
+	console.log(options);
+	console.log(typeof options);
+	// This is just to create pretty format, the next two lines can be deleted.
+	options = JSON.parse(options);
+	options = JSON.stringify(options, null, 4);
+	
+	fs.writeFile("MarkdownTransformConfig.json", options, "utf8", function(err, data) {			
+		if (err) {
+			console.log("Errror");
+			response.send({"result": "Error", "details": err});
+		}
+		console.log("FileWritten, MarkdownTransformConfig");
+		response.send({"result": "Success", data: data});
+	});
+})
 
 /*var writeFile = function(response, jsonString) {
 		fs.writeFile("test.md", jsonString, function(err) {
