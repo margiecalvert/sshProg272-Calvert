@@ -1,0 +1,12 @@
+{
+   "name" : "Android1Files",
+   "version": "1.0.0",
+   "private": true,
+   
+    "dependencies": {
+    },
+    "devDependencies": {
+       "express": "latest",
+       "mongodb": "latest"
+    }     
+}

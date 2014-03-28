@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AwsBasicS3</title>
+        <link rel="shortcut icon" href="favicon16.png">
+        <link rel="stylesheet" href="/stylesheets/style.css">
+        <script data-main="Main" src="require.js"> </script>
+        < script src="QueryMongo.js"></script>
+        <!--script src="AwsUi.js"></script -->
+    </head>
+    <body>
+        <h1>AwsBasicS3</h1>        
+        <p>Welcome to AwsBasicS3</p>
+        <button id = "insertOptions"> Insert Options into Database</button>
+        <button id = "insertMTC"> Insert MTC into Database</button>
+        
+        <div>
+        <img src="Bar02.png">
+        </div>
+        <button id="buildAll">Transform and copy</button>
+        <button id="tranformBackButton">&lt;&lt;</button>
+        <button id="transformForwardButton">&gt;&gt;</button>
+        <button id="changeMTC">Save Changes to The Four Fields Below</button>
+       
+        
+        <p id="copyResultA"></p>
+        <div class="displayKing">
+            <label for="pathToPython">Path to Python</label>
+            <input id="pathToPython">-</input>
+            <label for="copyFrom">Copy from</label>
+            <input id="copyFrom">-</input>
+            <label for="copyTo">Copy to</label>
+            <input id="copyTo">-</input>
+            <label for="filesToCopy">Files to copy</label>
+            <input id="filesToCopy">-</input>
+        </div>        
+        <div>
+        <img src="Bar02.png">
+        </div>
+        <button id="listBuckets">Get Buckets</button>
+        <button id="copyToS3"> Copy to S3 </button>
+        <button id="getOptions"> Get Options </button>
+        <button id="backButton"> &lt;&lt; </button>
+        <button id="forwardButton"> &gt;&gt; </button>
+         <button id="changeOptions"> Save Changes to the Options Below </button>
+        <ul id="buckets"></ul>
+        <p id="changeResult"> </p>
+        
+        
+        <div class="displayKing">
+            <label for="documentCount">Document Count</label>
+            <input id="documentCount">-</input>
+            <label for="currentDocument">Current Document</label>
+            <input id="currentDocument">-</input>
+            <label for="pathToConfig">pathToConfig</label>
+            <input id="pathToConfig">-</input>
+            <label for="reallyWrite">reallyWrite</label>
+            <input id="reallyWrite">-</input>
+            <label for="bucketName">bucketName</label>
+            <input id="bucketName">-</input>
+            <label for="folderToWalk">folderToWalk</label>
+            <input id="folderToWalk">-</input>
+            <label for="s3RootFolder">s3RootFolder</label>
+            <input id="s3RootFolder">-</input>
+            <label for="createFolderToWalkOnS3">createFolderToWalkOnS3</label>
+            <input id="createFolderToWalkOnS3">-</input>
+            <label for="createIndex">createIndex</label>
+            <input id="createIndex">-</input>
+            <label for="filesToIgnore">filesToIgnore</label>
+            <input id="filesToIgnore">-</input>
+        </div>
+        <div>
+        <img src="Bar02.png">
+        </div>
+        <div class="displayKing">            
+            <h2>Files Copied</h2>
+            <ul id="buildData">
+            </ul>
+        </div>
+    </body>
+</html>
